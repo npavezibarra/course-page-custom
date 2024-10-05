@@ -1,0 +1,140 @@
+div#main-menu {
+    max-width: 1280px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+
+@media screen and (max-width: 1480px) {
+    div#main-menu {
+        max-width: 80%;
+    }
+}
+
+ul {
+    display: flex;
+    gap: 30px;
+    margin:0px;
+    list-style-type: none; /* Removes the bullet points */
+    padding-left: 0;
+    padding-top: 10px;
+}
+
+#logo-website > h1 {
+    margin: 0px;
+    font-family: "Inter", sans-serif;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+a {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    color: black;
+    text-decoration: none;
+    font-size:1.2 em;
+}
+
+#body-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Alinear el contenido hacia la parte inferior */
+    height: 350px; /* Puedes ajustar esta altura según tus necesidades */
+    padding: 20px;
+    color: white; /* Para asegurarte que el texto sea legible sobre la imagen */
+    position: relative;
+    max-width: 1280px;
+    margin: auto;
+    border-radius: 8px;
+}
+
+div#about-course {
+    max-width: 1280px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+div#course-content {
+    background: #eeeeee;
+    width: 35%;
+    height: auto;
+    border-radius: 8px;
+    padding: 30px;
+    display: inline-block;
+}
+
+/* ELIMINAR HEADER DE COURSE PAGE */
+
+.single-sfwd-courses div#header {
+    display: none;
+}
+
+#page>hr {
+    display: none;
+}
+
+.single-sfwd-courses html {
+    margin-top: 0 !important; /* Elimina el margin-top solo en las páginas de cursos */
+}
+
+#datos-generales-curso h1, h4 {
+    color: white;
+    max-width: 1280px;
+    margin: auto;
+}
+
+#course-content ul {
+    display: flex;
+    flex-direction: column !important;
+}
+
+#course-content > h4 {
+    color: black;
+}
+
+#course-content > hr {
+    margin-bottom: 40px;
+}
+
+#description-course > h4 {
+    color: black;
+}
+
+div#about-course {
+    display: flex;
+    gap: 20px;
+    max-width: 1000px;
+    align-items: flex-start; 
+}
+
+div#description-course {
+    max-width: 60%;
+    padding-top: 30px;
+    height: auto;
+}
+
+div#datos-generales-curso {
+    width: 1000px;
+    margin: auto auto 0px;
+}
+
+
+div#buy-button-stats {
+    max-width: 800px;
+    height: 70px;
+    background: #eeeeee;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 8px;
+}
+
+#course-content ul>li>a {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    color: black;
+    text-decoration: none;
+    font-size:0.9em;
+}
