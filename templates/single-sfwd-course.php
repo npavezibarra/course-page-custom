@@ -49,7 +49,13 @@ get_header(); ?>
     <!-- Puedes añadir más contenido aquí si es necesario -->
 </div>
 
-<div id="buy-button-stats"></div>
+<div id="buy-button-stats">
+    <?php
+    if (function_exists('mostrar_comprar_stats')) {
+        mostrar_comprar_stats(); // Llamada dentro del div.
+    } ?>
+</div>
+
 
 <div id="about-course">
 <div id="course-content">
