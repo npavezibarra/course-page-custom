@@ -75,6 +75,7 @@ function save_first_quiz_metabox($post_id) {
 }
 add_action('save_post', 'save_first_quiz_metabox');
 
+
 // Cargar solo los scripts necesarios en la pantalla de edición del curso
 function enqueue_metabox_admin_scripts($hook_suffix) {
     global $post_type;
