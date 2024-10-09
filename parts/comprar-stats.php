@@ -107,11 +107,16 @@ function mostrar_comprar_stats() {
             <div class="test-buttons" style="flex: 1; text-align: right; display: flex; gap: 20px;">
                 <!-- Primer Test con link al Quiz inicial desde el metabox -->
                 <a href="<?php echo esc_url($first_quiz_url); ?>" style="flex: 1; background-color: #4c8bf5; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 14px; text-align: center; display: inline-block; text-decoration: none;">
-                    Primer Test
+                    Examen Incial
                 </a>
-                <button style="flex: 1; background-color: #ccc; color: #333; border: none; padding: 10px 20px; border-radius: 5px; font-size: 14px; cursor: not-allowed;">
-                    Segundo Test
-                </button>
+
+                <!-- Button with Tooltip for "Evaluación Final" -->
+                <div id="final-test-button" class="tooltip" style="flex: 1;">
+                <button id="final-evaluation-button" style="flex: 1; background-color: #ccc; color: #333; border: none; padding: 10px 20px; border-radius: 5px; font-size: 14px; cursor: not-allowed; display: flex; align-items: center; justify-content: center;">
+    Examen Final
+</button>
+                    <span class="tooltiptext">Completa todas las lecciones de este curso para tomar el Examen Final</span>
+                </div>
             </div>
         </div>
         <?php
