@@ -1,4 +1,4 @@
-<?php 
+<?php
 get_header(); ?>
 
 
@@ -93,7 +93,7 @@ get_header(); ?>
 
                     // Mostrar cada lección con su círculo y nombre
                     echo '<li class="lesson-item ' . $circle_color_class . '" style="display: flex; align-items: center; margin-bottom: 10px;">';
-                    echo '<span class="lesson-circle" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 10px; background-color: ' . ($is_completed ? '#00a65a' : '#ccc') . ';"></span>';
+                    echo '<span class="lesson-circle" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 10px; background-color: ' . ($is_completed ? '#4c8bf5' : '#ccc') . ';"></span>';
                     echo '<a href="' . get_permalink($lesson_id) . '">' . get_the_title() . '</a>';
                     echo '</li>';
                 }

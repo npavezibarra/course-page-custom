@@ -1,5 +1,14 @@
 <?php
+ob_start();
 
+// Function to auto-enroll the user in a course
+function auto_enroll_user_in_course($user_id, $course_id) {
+    if (!sfwd_lms_has_access($course_id, $user_id)) {
+        ld_update_course_access($user_id, $course_id);
+    }
+}
+
+// Function to display the progress bar and buttons
 function mostrar_comprar_stats() {
     // Obtener el ID del usuario y el curso
     $user_id = get_current_user_id();
@@ -22,8 +31,9 @@ function mostrar_comprar_stats() {
         $first_quiz_url = '#'; // O un enlace predeterminado si no hay quiz asociado
     }
 
-    if (!is_user_logged_in() || !$is_enrolled) {
-        // Primer estado: Usuario no logueado o no ha comprado el curso
+    // If user is not logged in or not enrolled
+    if (!is_user_logged_in()) {
+        // Usuario no logueado
         ?>
         <div class="progress-widget" style="display: flex; align-items: center; background-color: #eeeeee; padding: 20px 20px; border-radius: 10px; width: 100%;">
             <div class="progress-bar" style="flex: 1; width: 50%; margin-right: 20px;">
@@ -36,14 +46,42 @@ function mostrar_comprar_stats() {
                 </div>
             </div>
             <div class="buy-button" style="flex: 1; width: 50%; text-align: right;">
-                <button style="width: 80%; background-color: #4c8bf5; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 14px; cursor: pointer;">
+                <button style="width: 80%; background-color: #4c8bf5; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 14px; cursor: pointer;"
+                        onclick="window.location.href='<?php echo wp_login_url(get_permalink($course_id)); ?>'">
+                    Iniciar Sesión para Inscribirse
+                </button>
+            </div>
+        </div>
+        <?php
+    } elseif (!$is_enrolled) {
+        // Usuario logueado pero no inscrito
+        if (isset($_GET['enroll']) && $_GET['enroll'] == 1) {
+            // Enroll the user when clicking the button
+            auto_enroll_user_in_course($user_id, $course_id);
+            wp_redirect(get_permalink($course_id));
+            exit();
+        }
+        ?>
+        <div class="progress-widget" style="display: flex; align-items: center; background-color: #eeeeee; padding: 20px 20px; border-radius: 10px; width: 100%;">
+            <div class="progress-bar" style="flex: 1; width: 50%; margin-right: 20px;">
+                <div style="background-color: #e0e0e0; height: 10px; border-radius: 5px; position: relative;">
+                    <div style="width: 0%; background-color: #ccc; height: 100%; border-radius: 5px;"></div> <!-- Barra vacía -->
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; color: #333;">
+                    <span>0%</span>
+                    <span>100%</span>
+                </div>
+            </div>
+            <div class="buy-button" style="flex: 1; width: 50%; text-align: right;">
+                <button style="width: 80%; background-color: #4c8bf5; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 14px; cursor: pointer;"
+                        onclick="window.location.href='<?php echo add_query_arg('enroll', 1, get_permalink($course_id)); ?>'">
                     Tomar Curso
                 </button>
             </div>
         </div>
         <?php
     } else {
-        // Segundo estado: Usuario logueado y ya inscrito en el curso
+        // Usuario logueado y ya inscrito en el curso
         ?>
         <div class="progress-widget" style="display: flex; align-items: center; background-color: #eeeeee; padding: 20px 20px; border-radius: 10px; width: 100%;">
             <div class="progress-bar" style="flex: 1; width: 50%; margin-right: 20px;">
@@ -68,4 +106,9 @@ function mostrar_comprar_stats() {
         <?php
     }
 }
+
+if (headers_sent($file, $line)) {
+    echo "Headers already sent in $file on line $line";
+}
+
 ?>

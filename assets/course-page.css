@@ -13,7 +13,7 @@ div#main-menu {
     }
 }
 
-ul {
+#main-menu ul {
     display: flex;
     gap: 30px;
     margin:0px;
@@ -42,7 +42,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: flex-end; /* Alinear el contenido hacia la parte inferior */
-    height: 350px; /* Puedes ajustar esta altura según tus necesidades */
+    height: 250px; /* Puedes ajustar esta altura según tus necesidades */
     padding: 20px;
     color: white; /* Para asegurarte que el texto sea legible sobre la imagen */
     position: relative;
