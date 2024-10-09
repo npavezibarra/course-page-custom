@@ -31,6 +31,17 @@ function mostrar_comprar_stats() {
         $first_quiz_url = '#'; // O un enlace predeterminado si no hay quiz asociado
     }
 
+    // Obtener el progreso del curso basado en las lecciones completadas
+    $total_lessons = count(learndash_get_course_steps($course_id));
+    $completed_lessons = learndash_course_get_completed_steps_legacy($user_id, $course_id);
+
+    // Calcular el porcentaje de progreso
+    if ($total_lessons > 0) {
+        $percentage_complete = ($completed_lessons / $total_lessons) * 100;
+    } else {
+        $percentage_complete = 0;
+    }
+
     // If user is not logged in or not enrolled
     if (!is_user_logged_in()) {
         // Usuario no logueado
@@ -86,10 +97,10 @@ function mostrar_comprar_stats() {
         <div class="progress-widget" style="display: flex; align-items: center; background-color: #eeeeee; padding: 20px 20px; border-radius: 10px; width: 100%;">
             <div class="progress-bar" style="flex: 1; width: 50%; margin-right: 20px;">
                 <div style="background-color: #e0e0e0; height: 10px; border-radius: 5px; position: relative;">
-                    <div style="width: 30%; background-color: #4c8bf5; height: 100%; border-radius: 5px;"></div> <!-- Barra con progreso al 30% -->
+                    <div style="width: <?php echo esc_attr($percentage_complete); ?>%; background-color: #4c8bf5; height: 100%; border-radius: 5px;"></div> <!-- Barra con progreso real -->
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 12px; color: #333;">
-                    <span>30%</span>
+                    <span><?php echo esc_html(round($percentage_complete)); ?>%</span>
                     <span>100%</span>
                 </div>
             </div>
