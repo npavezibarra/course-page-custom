@@ -157,27 +157,29 @@ function mostrar_comprar_stats() {
                 <div id="final-test-button" class="tooltip" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
                     <?php
                     // Check quiz attempts for the final exam
-                    list($has_completed_final_quiz, $final_percentage_correct) = get_latest_quiz_percentage($user_id, $final_quiz_id);
-                    
-                    // Get the total number of lessons and completed lessons
-                    $total_lessons = count(learndash_get_course_steps($course_id));
-                    $completed_lessons = learndash_course_get_completed_steps_legacy($user_id, $course_id);
+                    // Check quiz attempts for the final exam
+                        list($has_completed_final_quiz, $final_percentage_correct) = get_latest_quiz_percentage($user_id, $final_quiz_id);
 
-                    // Check if all lessons are completed
-                    if ($completed_lessons === $total_lessons) {
-                        // All lessons completed, show clickable button linking to the final quiz
-                        echo '<a href="' . esc_url(get_permalink($final_quiz_id)) . '" style="width: 100%; background-color: #4c8bf5; color: white; border: none; padding: 10px 0px; border-radius: 5px; font-size: 14px; text-align: center; text-decoration: none;">
-                                Examen Final
-                            </a>';
-                    } elseif ($has_completed_final_quiz) {
-                        // Show the percentage if the final quiz has been completed
-                        echo "<strong>$final_percentage_correct%</strong><p>Examen Final</p>"; // Show percentage and label
-                    } else {
-                        // Not completed, show disabled button
-                        echo '<button id="final-evaluation-button" style="width: 100%; background-color: #ccc; color: #333; border: none; padding: 10px 0px; border-radius: 5px; font-size: 14px; cursor: not-allowed; display: flex; align-items: center; justify-content: center;">
-                                Examen Final
-                            </button>';
-                    }
+                        // Get the total number of lessons and completed lessons
+                        $total_lessons = count(learndash_get_course_steps($course_id));
+                        $completed_lessons = learndash_course_get_completed_steps_legacy($user_id, $course_id);
+
+                        // Check if all lessons are completed
+                        if ($completed_lessons === $total_lessons) {
+                            // All lessons completed, show clickable button linking to the final quiz
+                            echo '<a href="' . esc_url(get_permalink($final_quiz_id)) . '" style="width: 100%; background-color: #4c8bf5; color: white; border: none; padding: 10px 0px; border-radius: 5px; font-size: 14px; text-align: center; text-decoration: none;">
+                                    Examen Final
+                                </a>';
+                        } elseif ($has_completed_final_quiz) {
+                            // Show the percentage if the final quiz has been completed
+                            echo "<strong>$final_percentage_correct%</strong><p>Examen Final</p>"; // Show percentage and label
+                        } else {
+                            // Not completed, show disabled button
+                            echo '<button id="final-evaluation-button" style="width: 100%; background-color: #ccc; color: #333; border: none; padding: 10px 0px; border-radius: 5px; font-size: 14px; cursor: not-allowed; display: flex; align-items: center; justify-content: center;">
+                                    Examen Final
+                                </button>';
+                        }
+
                     ?>
                     <span class="tooltiptext">Completa todas las lecciones de este curso para tomar el Examen Final</span>
                 </div>

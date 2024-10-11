@@ -130,5 +130,25 @@ get_header(); ?>
 
 </div>
 
+<div id="autor-box" style="padding: 40px; border-radius: 10px; background-color: #f9f9f9; display: flex; align-items: flex-start; margin-top: 20px;">
+    <div style="flex: 0 0 auto; margin-right: 20px;">
+        <div class="user-photo-circle" style="width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; background-color: red; color: white; font-size: 24px;">
+            F
+        </div>
+    </div>
+    <div style="flex: 1;">
+        <h2 style="margin: 0; font-size: 24px;">
+            <?php 
+            $author_id = get_post_field('post_author', get_the_ID());
+            $first_name = get_the_author_meta('first_name', $author_id);
+            $last_name = get_the_author_meta('last_name', $author_id);
+            echo esc_html($first_name . ' ' . $last_name); // Mostrar el nombre del autor
+            ?>
+        </h2>
+        <p style="margin: 5px 0;"><?php echo esc_html(get_the_author_meta('description', $author_id)); ?></p>
+    </div>
+</div>
+
+
 
 
