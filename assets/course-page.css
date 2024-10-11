@@ -181,3 +181,35 @@ div#buy-button-stats {
   button#final-evaluation-button {
     padding: 13px 20px !important;
 }
+
+#menu-replica>nav>ul>li {
+    padding-top: 10px !important;
+}
+
+
+p#primer-test-legend {
+    font-size: 10px;
+    margin: 0px;
+}
+
+div#primer-test-score {
+    flex-direction: column;
+    border-radius: 6px;
+}
+
+
+span.tooltiptext {
+    font-size: 12px;
+}
+
+
+#final-test-button > p {
+    margin: 0px !important;
+    font-size: 10px;
+}
+
+div#primer-test-score > a {
+    flex-direction: column;
+    border-radius: 6px;
+}
+

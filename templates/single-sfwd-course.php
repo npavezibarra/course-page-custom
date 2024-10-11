@@ -14,13 +14,10 @@ get_header(); ?>
         }
         ?>
     </div>
-    <nav class="is-responsive items-justified-right wp-block-navigation is-horizontal is-content-justification-right is-layout-flex wp-container-core-navigation-is-layout-1 wp-block-navigation-is-layout-flex">
+    <nav id="menu-replica" class="is-responsive items-justified-right wp-block-navigation is-horizontal is-content-justification-right is-layout-flex wp-container-core-navigation-is-layout-1 wp-block-navigation-is-layout-flex">
         <?php
         // Cargar el menú de navegación principal.
-        wp_nav_menu(array(
-            'theme_location' => 'primary', // Ajusta este valor según la ubicación del menú de tu tema.
-            'container_class' => 'primary-nav'
-        ));
+        echo do_blocks( '<!-- wp:navigation {"overlayMenu":"never"} /-->' );
         ?>
     </nav>
     
@@ -101,6 +98,22 @@ get_header(); ?>
 
             // Reset post data después del query
             wp_reset_postdata();
+
+           // Ahora, obtenemos los quizzes asociados al curso
+           $quizzes = learndash_get_course_quiz_list($course_id);
+           if (!empty($quizzes)) {
+               echo '<hr>';
+               foreach ($quizzes as $quiz) {
+                   // Display the SVG icon before the quiz title
+                    echo '<li style="display: flex; align-items: center;">';
+                    echo '<img src="' . esc_url(plugins_url('assets/svg/exam-icon.svg', __DIR__)) . '" alt="Exam Icon" style="width: 20px; height: 20px; margin-right: 10px;">'; // Correct path to the SVG
+                    echo '<a href="' . get_permalink($quiz['post']->ID) . '">' . esc_html($quiz['post']->post_title) . '</a>';
+                    echo '</li>';
+               }
+               echo '</ul>';
+           } else {
+               echo '<p>No hay quizzes asociados a este curso.</p>';
+           }
         }
         ?>
     </ul>
