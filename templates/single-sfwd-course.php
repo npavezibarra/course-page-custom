@@ -132,8 +132,21 @@ get_header(); ?>
 
 <div id="autor-box" style="padding: 40px; border-radius: 10px; background-color: #f9f9f9; display: flex; align-items: flex-start; margin-top: 20px;">
     <div style="flex: 0 0 auto; margin-right: 20px;">
-        <div class="user-photo-circle" style="width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; background-color: red; color: white; font-size: 24px;">
-            F
+        <div class="user-photo-circle" style="width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; background-color: red;">
+            <?php 
+            // Get user ID and photo URL
+            $user_id = get_current_user_id();
+            $user_photo_url = get_user_meta($user_id, 'profile_picture', true); // Adjust this key to match your implementation
+
+            if ($user_photo_url) {
+                // If user has a profile photo, display it
+                echo '<img src="' . esc_url($user_photo_url) . '" alt="Profile Photo" style="width: 100%; height: 100%; border-radius: 50%;">';
+            } else {
+                // Otherwise, display the initial
+                $first_name = get_the_author_meta('first_name', $author_id);
+                echo '<span style="color: white; font-size: 24px;">' . strtoupper(substr($first_name, 0, 1)) . '</span>'; // Display the first letter of the first name
+            }
+            ?>
         </div>
     </div>
     <div style="flex: 1;">
@@ -148,6 +161,7 @@ get_header(); ?>
         <p style="margin: 5px 0;"><?php echo esc_html(get_the_author_meta('description', $author_id)); ?></p>
     </div>
 </div>
+
 
 
 
